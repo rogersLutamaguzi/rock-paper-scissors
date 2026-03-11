@@ -1,4 +1,5 @@
 'use strict';
+const score = { wins: 0, losses: 0, ties: 0 };
 function playGame(playerMove) {
 	const computerMove = pickComputerMove();
 	let result = '';
@@ -29,9 +30,17 @@ function playGame(playerMove) {
 			result = 'You lose';
 		}
 	}
+	if (result === 'You win') {
+		score.wins += 1;
+	} else if (result === 'You lose') {
+		score.losses += 1;
+	} else {
+		score.ties += 1;
+	}
 	// This shows the result on the webpage screen
 	alert(
-		`The computer selected: ${computerMove} and you selected: ${playerMove} therefore ${result}`,
+		`The computer selected: ${computerMove} and you selected: ${playerMove} therefore ${result}:
+wins: ${score.wins}, losses: ${score.losses}, ties: ${score.ties}`,
 	);
 }
 
@@ -43,6 +52,8 @@ function pickComputerMove() {
 	if (randomNumber >= 0 && randomNumber < 1 / 3) {
 		computerMove = 'rock';
 	} else if (randomNumber >= 1 / 3 && randomNumber < 2 / 3) {
+		exit;
+
 		computerMove = 'paper';
 	} else if (randomNumber >= 2 / 3 && randomNumber < 1) {
 		computerMove = 'scissors';
