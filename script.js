@@ -46,7 +46,7 @@ function playGame(playerMove) {
 			result = 'You lose';
 		}
 	}
-	// This updates the score and saves it to local storage but not on the page's screen
+
 	if (result === 'You win') {
 		score.wins += 1;
 	} else if (result === 'You lose') {
@@ -55,15 +55,13 @@ function playGame(playerMove) {
 		score.ties += 1;
 	}
 	localStorage.setItem('score', JSON.stringify(score));
-	//  This updates the score on the webpage screen but doesnt save it to local storage
 
 	updateScoreElement();
-
-	alert(
-		`The computer selected: ${computerMove} and you selected: ${playerMove} therefore ${result}:
-wins: ${score.wins}, losses: ${score.losses}, ties: ${score.ties}`
-	);
+	document.querySelector('.js-result').innerHTML = result;
+	document.querySelector('.js-moves').innerHTML =
+		`You:  ${playerMove} - Computer:  ${computerMove}`;
 }
+// update score on the wbsite screen
 function updateScoreElement() {
 	const scoreElement = document.querySelector('.js-score');
 	scoreElement.innerHTML = `${score.wins}, losses: ${score.losses}, ties: ${score.ties}`;
@@ -80,9 +78,5 @@ function pickComputerMove() {
 	} else if (randomNumber >= 2 / 3 && randomNumber < 1) {
 		computerMove = 'scissors';
 	}
-
-	// This logs the result to the F12 Console
-	console.log(`The computer selected: ${computerMove}`);
-
 	return computerMove;
 }
