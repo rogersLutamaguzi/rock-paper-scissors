@@ -59,12 +59,13 @@ function playGame(playerMove) {
 	updateScoreElement();
 	document.querySelector('.js-result').innerHTML = result;
 	document.querySelector('.js-moves').innerHTML =
-		`You:  ${playerMove} - Computer:  ${computerMove}`;
+		`You <img src="images/${playerMove}-emoji.png" alt="rock" class="emoji" />
+			<img src="images/${computerMove}-emoji.png" alt="paper" class="emoji" />Computer`;
 }
-// update score on the wbsite screen
+// update score on the website screen
 function updateScoreElement() {
 	const scoreElement = document.querySelector('.js-score');
-	scoreElement.innerHTML = `${score.wins}, losses: ${score.losses}, ties: ${score.ties}`;
+	scoreElement.innerHTML = `wins: ${score.wins}, losses: ${score.losses}, ties: ${score.ties}`;
 }
 function pickComputerMove() {
 	// generating computer move
